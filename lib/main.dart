@@ -58,11 +58,27 @@ class HomeState extends State<HomePage> {
     super.dispose();
   }
 
+  // Add search movie function
+  void searchMovies(query){
+    // check query if empty
+    if(query.isEmpty){
+      //if empty
+      setState((){
+        hasLoaded= true;
+
+      });
+
+    }
+  }
+
   @override
   void @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    //debounce helps us create an observable that has some latency on when it can send data through the stream
+    //deboounce method helps us to specify the time lag when the user makes a call to the api and when the data shows up in the view
+    subject.stream.debounce(Duration(milliseconds:400)).listen(searchMovies);
   }
 
   @override
