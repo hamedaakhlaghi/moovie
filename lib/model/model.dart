@@ -20,7 +20,7 @@ class Movie {
         //convert the  id which is integer to string
         id = json["id"].toString(),
         overview = json ["overview"],
-        // add favored to be false by default 
+        // add favored to be false by default
         favored = false;
 
 }

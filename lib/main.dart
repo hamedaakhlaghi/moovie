@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+// Import movie model to be used here
+import 'package:moovie/model/model.dart';
+import 'package:rxdart/rxdart.dart';
+import 'package:http/http.dart' as http;
 
 void main() => runApp(new MyApp());
 
@@ -7,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Moovy',
       theme: new ThemeData(
         // This is the theme of your application.
         //
