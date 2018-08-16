@@ -50,7 +50,7 @@ class HomeState extends State<HomePage> {
   // returns an observable object rather than a string
   final PublishSubject subject = PublishSubject<String>();
 
-  @overide
+  @override
   void @override
   void dispose() {
     // TODO: implement dispose--close the widget after we are done.
@@ -58,13 +58,39 @@ class HomeState extends State<HomePage> {
     super.dispose();
   }
 
-  @overide
+  @override
+  void @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
         title: Text('Movie Searcher')
       ),
-      body: Container(),
+      body: Container(
+        padding: EdgeInsets.all(10.0),
+        children: <Widget>[
+          TextField(
+            //when user types anything into the text field we get the string
+            onChanged: (String string)=> (subject.add(string)),
+            hasLoaded ? Container() : CircularProgressIndicator(),
+            Expanded(
+              child: ListView.builder(
+                padding: EdgeInsets.all(10.0),
+                itemCount: movies.length,
+                itemBuilder: (BuildContext context, int index){
+                  return new Container();
+                },
+              )
+            )
+          )
+        ]
+
+      ),
     );
   }
 
