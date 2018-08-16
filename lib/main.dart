@@ -60,11 +60,13 @@ class HomeState extends State<HomePage> {
 
   // Add search movie function
   void searchMovies(query){
+    // reset every single time we go for querying
+    resetMovies();
     // check query if empty
     if(query.isEmpty){
       //if empty
       setState((){
-        hasLoaded= true;
+        hasLoaded= false;
 
       });
 
