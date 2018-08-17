@@ -4,11 +4,15 @@ import 'package:moovie/model/model.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:http/http.dart' as http;
 
+
 //converting data from json
 import 'dart:convert';
 
+
+
+
 // API Key
-const key = ' ';
+const key = '52fe98c18e1cd539a095fc613c5189b2';
 
 
 void main() => runApp(new MyApp());
@@ -58,7 +62,7 @@ class HomeState extends State<HomePage> {
           });
     }
     setState(()=> hasLoaded = false);
-        http.get('https://api.themoviedb.org/3/search/movie?api_key=$key&query=$query');
+        http.get('https://api.themoviedb.org/3/search/movie?api_key=$key&query=$query')
         //pull out or response
         .then((res)=> (res.body))
         .then(json.decode)
@@ -116,7 +120,7 @@ class HomeState extends State<HomePage> {
             padding:EdgeInsets.all(10.0),
             itemCount: movies.length,
             itemBuilder: (BuildContext context,int index){
-              return new Container();
+              return new MovieView(movies[index]);
             },
           ),)
         ],
@@ -126,6 +130,49 @@ class HomeState extends State<HomePage> {
   }
 
 
+}
+
+class MovieView extends StatefulWidget {
+  MovieView(this.movie);
+  final Movie movie;
+
+  @override
+  MovieViewState createState()=> MovieViewState();
+
+}
+class MovieViewState extends State<MovieView>{
+  Movie movieState;
+  
+  @override
+  void initState() {
+    super.initState();
+    // TODO: implement initState
+    movieState = widget.movie;
+  }
+
+
+  //Return a card
+  @override
+  Widget build(BuildContext context){
+    return Card(
+      child: Container(
+        height:200.0,
+        padding: EdgeInsets.all(10.0),
+        child:Row(
+          children: <Widget>[
+             movieState.posterPath != null
+              ? Hero(
+               child: Image.network(
+                 "https://image.tmdb.org/t/p/w92${movieState.posterPath}"
+               ),
+               tag: movieState.id,
+             )
+                 : Container(),
+          ]
+        )
+      )
+    );
+  }
 }
 
 

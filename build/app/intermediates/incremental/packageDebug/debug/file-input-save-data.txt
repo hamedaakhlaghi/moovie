@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Aug 16 15:32:19 EAT 2018
+#Fri Aug 17 12:41:43 EAT 2018
 4.path=flutter_assets/vm_snapshot_data
 8.set=ASSET
 6.path=flutter_assets/isolate_snapshot_data

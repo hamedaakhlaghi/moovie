@@ -9,7 +9,7 @@ class Secret {
   Secret({this.apikey=""});
 
   factory Secret.fromJson(Map<String, dynamic>jsonMap){
-    return new Secret(apikey:jsonMap["api_key"])
+    return new Secret(apikey:jsonMap["api_key"]);
   }
 }
 
@@ -23,8 +23,10 @@ class SecretLoader {
             (jsonStr) async {
           final secret = Secret.fromJson(json.decode(jsonStr));
           return secret;
+
         });
   }
 }
 
 
+Future<Secret> secret = SecretLoader(secretPath: "secrets.json").load();
