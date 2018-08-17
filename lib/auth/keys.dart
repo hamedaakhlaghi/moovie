@@ -29,4 +29,4 @@ class SecretLoader {
 }
 
 
-Future<Secret> secret = SecretLoader(secretPath: "secrets.json").load();
+
