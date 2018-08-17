@@ -54,17 +54,42 @@ class HomeState extends State<HomePage> {
     if(query.isEmpty){
       //if empty
       setState((){
-        hasLoaded= false;
-
-      });
-
+        hasLoaded = true;
+          });
     }
+    setState(()=> hasLoaded = false);
+        http.get('https://api.themoviedb.org/3/search/movie?api_key=$key&query=$query');
+        //pull out or response
+        .then((res)=> (res.body))
+        .then(json.decode)
+        .then((map)=> map["results"])
+        .then((movies)=> movies.forEach(addMovie))
+        .catchError(onError)
+        .then((e) {
+          setState((){
+            hasLoaded = true;
+
+        });
+        });
+
+  }
+
+  void onError(dynamic d) {
+    setState(() {
+      hasLoaded = true;
+    });
+  }
+  void addMovie(item){
+    setState((){
+      movies.add(Movie.fromJson(item));
+    });
+    print('${movies.map((m)=> m.title)}');
   }
 
   void resetMovies(){
     setState(()=> movies.clear());
   }
-  
+
   @override
   void initState() {
     // TODO: implement initState
