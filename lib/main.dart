@@ -11,8 +11,6 @@ import 'dart:convert';
 const key = ' ';
 
 
-
-
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
@@ -21,24 +19,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'Moovy',
-      theme: new ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or press Run > Flutter Hot Reload in IntelliJ). Notice that the
-        // counter didn't reset back to zero; the application is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: new MyHomePage(title: 'Flutter Demo Home Page'),
+      theme: new ThemeData.dark(),
+      home: HomePage(),
     );
   }
 }
 
 class HomePage extends StatefulWidget {
-  @overide
+  @override
   HomeState createState() => HomeState();
 }
 
@@ -50,11 +38,11 @@ class HomeState extends State<HomePage> {
   // returns an observable object rather than a string
   final PublishSubject subject = PublishSubject<String>();
 
+
   @override
-  void @override
   void dispose() {
     // TODO: implement dispose--close the widget after we are done.
-    subject.close()
+    subject.close();
     super.dispose();
   }
 
@@ -74,7 +62,7 @@ class HomeState extends State<HomePage> {
   }
 
   void resetMovies(){
-    setState(()=> movies.clear())
+    setState(()=> movies.clear());
   }
 
   @override
@@ -95,24 +83,21 @@ class HomeState extends State<HomePage> {
       ),
       body: Container(
         padding: EdgeInsets.all(10.0),
-        children: <Widget>[
+        child: Column(children: <Widget>[
           TextField(
-            //when user types anything into the text field we get the string
-            onChanged: (String string)=> (subject.add(string)),
-            hasLoaded ? Container() : CircularProgressIndicator(),
-            Expanded(
-              child: ListView.builder(
-                padding: EdgeInsets.all(10.0),
-                itemCount: movies.length,
-                itemBuilder: (BuildContext context, int index){
-                  return new Container();
-                },
-              )
-            )
-          )
-        ]
-
-      ),
+            onChanged: (String string) => (subject.add(string)),
+          ),
+          hasLoaded ? Container(): CircularProgressIndicator(),
+          Expanded(child: ListView.builder(
+            padding:EdgeInsets.all(10.0),
+            itemCount: movies.length,
+            itemBuilder: (BuildContext context,int index){
+              return new Container();
+            },
+          ),)
+        ],
+        )
+      )     
     );
   }
 
