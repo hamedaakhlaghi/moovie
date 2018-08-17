@@ -64,9 +64,8 @@ class HomeState extends State<HomePage> {
   void resetMovies(){
     setState(()=> movies.clear());
   }
-
+  
   @override
-  void @override
   void initState() {
     // TODO: implement initState
     super.initState();
