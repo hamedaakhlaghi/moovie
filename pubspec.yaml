@@ -1,6 +1,9 @@
 name: moovie
 description: A new Flutter project.
 
+assets:
+- secrets.json
+
 dependencies:
   flutter:
     sdk: flutter
