@@ -6,7 +6,7 @@ The app fetches movie information from [themoviedb API](https://api.themoviedb.o
 
 # Working function 
 
-- Movie search function.
+- Perform a search querying the  [themoviedb API](https://api.themoviedb.org).
 
 # To Do 
 - After searching display details of movie.
