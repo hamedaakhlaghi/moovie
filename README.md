@@ -1,6 +1,6 @@
 # moovie
 
-Movie Search app I'm building as I'm learning flutter.
+Movie Search app 
 
 The app fetches movie information from [themoviedb API](https://api.themoviedb.org)
 
